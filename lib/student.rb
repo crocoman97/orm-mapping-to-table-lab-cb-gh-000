@@ -1,4 +1,3 @@
-require 'pry'
 class Student
 
   attr_accessor :name, :grade
@@ -34,11 +33,10 @@ class Student
     @id = DB[:conn].execute("SELECT * FROM students WHERE name=?",self.name).flatten[0]
   end
   
+  def self.create(name:, grade:)
+    student = Student.new(name,grade)
+    student.save
+    student
+  end
+  
 end
-
-
-# learn --fail-fast
-
-
-
-
